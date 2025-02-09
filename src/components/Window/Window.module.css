@@ -1,0 +1,7 @@
+.window {
+    height: 500px;
+    width: 500px;
+    color: blue;
+    border-width: medium;
+    border-color: red;
+}

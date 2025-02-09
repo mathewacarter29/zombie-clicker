@@ -1,11 +1,12 @@
 import './App.css'
+import Window from './components/Window/Window'
 
 function App() {
 
   return (
-    <div>
+    <Window>
       <h1>Hello, Kelsi</h1>
-    </div>
+    </Window>
   )
 }
 
