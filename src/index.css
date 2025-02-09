@@ -5,6 +5,8 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
+  background-image: url('./assets/graveyard.png');
+  background-size: 100% 100%;
   background-color: #242424;
 
   font-synthesis: none;
