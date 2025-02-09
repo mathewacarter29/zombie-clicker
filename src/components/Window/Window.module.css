@@ -6,4 +6,9 @@
     border-radius: 10px;
     border-color: black;
     position: relative;
+    display: table;
+}
+.cell {
+    display: table-cell;
+    vertical-align: middle;
 }

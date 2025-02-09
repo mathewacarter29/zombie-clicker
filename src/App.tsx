@@ -1,14 +1,8 @@
-import './App.css'
-import Window from './components/Window/Window'
-import Zombies from './components/Zombies/Zombies'
+import "./App.css";
+import Zombies from "./components/Zombies/Zombies";
 
 function App() {
-
-  return (
-    <Window>
-      <Zombies></Zombies>
-    </Window>
-  )
+  return <Zombies></Zombies>;
 }
 
-export default App
+export default App;

@@ -1,5 +1,7 @@
 import zombieImage from "../../assets/zombie.png";
 import { useState } from "react";
+import Window from "../Window/Window";
+import classes from "./Zombies.module.css";
 
 function Zombies() {
   const NUM_ZOMBIES = 10;
@@ -13,6 +15,7 @@ function Zombies() {
   const [zombies, setZombies] = useState<zombieSettings[]>(
     initZombies(NUM_ZOMBIES)
   );
+  const [won, setWon] = useState(false);
 
   function getRandomIntInclusive(min: number, max: number) {
     return Math.floor(Math.random() * (max - min + 1) + min);
@@ -35,35 +38,61 @@ function Zombies() {
   }
 
   function zombieClick(index: number) {
-    setZombies(
-      zombies.map((zombie, i) => {
-        if (i === index) {
-          return { ...zombie, visible: false };
-        }
-        return zombie;
-      })
-    );
+    const newZombies = zombies.map((zombie, i) => {
+      if (i === index) {
+        return { ...zombie, visible: false };
+      }
+      return zombie;
+    });
+    setZombies(newZombies);
+    checkForWin(newZombies);
+  }
+
+  function resetZombies(num: number) {
+    setWon(false);
+    setZombies(initZombies(num));
+  }
+
+  function checkForWin(zombieList: zombieSettings[]) {
+    if (!zombieList.some((zombie) => zombie.visible)) {
+      setWon(true);
+    }
   }
 
   return (
     <div>
-      {zombies.map((zombie) => {
-        return (
-          <img
-            key={zombie.index}
-            src={zombieImage}
-            style={{
-              width: 90,
-              height: 90,
-              position: "absolute",
-              left: zombie.x + "%",
-              top: zombie.y + "%",
-              visibility: zombie.visible ? "visible" : "hidden",
-            }}
-            onClick={() => zombieClick(zombie.index)}
-          />
-        );
-      })}
+      <Window>
+        {won ? (
+          <div>
+            <h1>You killed all the zombies!</h1>
+            <h1>Click Restart to play again!</h1>
+          </div>
+        ) : (
+          zombies.map((zombie) => {
+            return (
+              <img
+                key={zombie.index}
+                src={zombieImage}
+                style={{
+                  width: 90,
+                  height: 90,
+                  position: "absolute",
+                  left: zombie.x + "%",
+                  top: zombie.y + "%",
+                  visibility: zombie.visible ? "visible" : "hidden",
+                }}
+                onClick={() => zombieClick(zombie.index)}
+              />
+            );
+          })
+        )}
+      </Window>
+      <button
+        onClick={() => resetZombies(NUM_ZOMBIES)}
+        className={classes.button}
+      >
+        Restart
+      </button>
     </div>
   );
 }
