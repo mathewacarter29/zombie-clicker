@@ -2,6 +2,8 @@
     height: 750px;
     width: 750px;
     border-style: solid;
-    border-width: medium;
-    border-color: red;
+    border-width: thick;
+    border-radius: 10px;
+    border-color: black;
+    position: relative;
 }
